@@ -1,11 +1,10 @@
 package model.trading
 
-import model.trading.transactions.Trade
 import model.trading.brocker.DiscountBroker
 import model.trading.client.Investor
 import model.trading.securities.derivatives.options.{OptionHolder, OptionWriter, Options}
-
 import model.trading.securities.equitysecurties._
+import model.trading.transactions.Trade
 
 object CallOptionOnGoogleStock_Test extends App {
 
