@@ -1,5 +1,6 @@
 package model.trading.brocker
 
+import model.trading.orders.Order
 import model.trading.transactions.Trade
 
 /**
@@ -10,7 +11,13 @@ import model.trading.transactions.Trade
  *  But provides NO _Investment Advice_.
  */
 
-trait DiscountBroker { // syn: Broker opp: FullServiceBroker
+
+
+trait Broker {
+  def place(order:Order) // when one/investor asks a broker to place the order for him
+}
+
+trait DiscountBroker extends Broker { // syn: Broker opp: FullServiceBroker
 
   def executeTrades(trades:Seq[Trade])       // without the extra services
 

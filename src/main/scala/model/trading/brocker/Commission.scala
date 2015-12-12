@@ -10,4 +10,4 @@ package model.trading.brocker
  * _Commissions_ vary widely from _Brokerage_ to _Brokerage_.
  */
 
-class Commission {}
+trait Commission {}

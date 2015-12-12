@@ -2,7 +2,8 @@ package model.trading
 
 import model.trading.brocker.DiscountBroker
 import model.trading.client.Investor
-import model.trading.securities.derivatives.options.{OptionHolder, OptionWriter, Options}
+import model.trading.orders.Order
+import model.trading.securities.derivatives.options.{StockOption, OptionHolder, OptionWriter, Options}
 import model.trading.securities.equitysecurties._
 import model.trading.transactions.Trade
 
@@ -32,7 +33,7 @@ object CallOptionOnGoogleStock_Test extends App {
     }
   }
 
-  val callOption = Options.CALL(
+  val callOption: StockOption = Options.CALL(
                                 optionWriter,
                                 optionHolder,
                                 strikePrice = Price("1.0"),
@@ -41,7 +42,9 @@ object CallOptionOnGoogleStock_Test extends App {
   )
 
   val discountBroker = new DiscountBroker {
+
     override def executeTrades(trades: Seq[Trade]): Unit = {}
+    override def place(order: Order): Unit = {}
   }
 
   //val right = discountBroker.executeTrades()
