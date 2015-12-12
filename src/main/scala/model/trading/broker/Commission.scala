@@ -1,4 +1,4 @@
-package model.trading.brocker
+package model.trading.broker
 
 /**
  * A _Service Charge_ assessed by a

@@ -1,6 +1,6 @@
-package model.trading.brocker
+package model.trading.broker
 
-import model.trading.brocker.AdviceType.AdviceType
+import model.trading.broker.AdviceType.AdviceType
 
 /**
  Advice - The process of defining and implementing an appropriate

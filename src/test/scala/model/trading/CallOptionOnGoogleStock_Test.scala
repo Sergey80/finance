@@ -1,6 +1,6 @@
 package model.trading
 
-import model.trading.brocker.DiscountBroker
+import model.trading.broker.DiscountBroker
 import model.trading.client.Investor
 import model.trading.orders.Order
 import model.trading.securities.derivatives.options.{StockOption, OptionHolder, OptionWriter, Options}

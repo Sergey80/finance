@@ -1,4 +1,4 @@
-package model.trading.brocker
+package model.trading.broker
 
 import model.trading.securities.Security
 

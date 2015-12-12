@@ -1,7 +1,7 @@
 package model
 
 import model.trading.assets.{Asset, FixedAsset}
-import model.trading.brocker.{Commission, DiscountBroker}
+import model.trading.broker.{Commission, DiscountBroker}
 import model.trading.company.Company
 import model.trading.securities.equitysecurties.Stock
 import model.trading.transactions.Trade
