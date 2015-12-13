@@ -7,6 +7,6 @@ import model.trading.transactions.Trade
 
 trait DiscountBroker extends Broker { // syn: Broker opp: FullServiceBroker
 
-  def executeTrades(trades:Seq[Trade])       // without the extra services
+  //def executeTrades(trades:Seq[Trade])       // without the extra services
 
 }

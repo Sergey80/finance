@@ -1,28 +1,26 @@
 package model.trading
 
-import model.trading.orders.{Orders, Order}
+import model.trading.orders.{MarketOrder, Orders, Order}
+import model.trading.transactions.Trade
 import org.scalatest.{FeatureSpec, ShouldMatchers, GivenWhenThen}
 
 // http://www.investopedia.com/articles/01/022801.asp
 
-class PlaceAdnExecuteOrderTest extends FeatureSpec with GivenWhenThen with ShouldMatchers {
+class Place_Fill_Execute_Order_Test extends FeatureSpec with GivenWhenThen with ShouldMatchers {
 
-  Given("")
+  Given("Market Order")
 
     import model.trading.broker._
 
-    val broker = new Broker() {
-      override def place(order: Order*): Unit = ???
-      override def execute(order: Order*): Unit = ???
-    }
+    val broker = new Broker(){}
 
-    val marketOrder = Orders.marketOrder()
+    val marketOrder: MarketOrder = Orders.marketOrder()  // simplest order that is executed immediately
 
-  When("placing an order")
+  When("placing market order")
 
-    broker.place(marketOrder)
+   val placedOrder = broker.place(marketOrder)
 
-    // broker.execute(marketOrder)  // it will be executed immediately
+   val trade = placedOrder.execute()  // should it be executed inside the "place()" since it is marketOrder
 
   Then("check that...")
 

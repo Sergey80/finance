@@ -1,6 +1,6 @@
 package model.trading
 
-import model.trading.broker.DiscountBroker
+import model.trading.broker.{Broker, DiscountBroker}
 import model.trading.client.Investor
 import model.trading.orders.Order
 import model.trading.securities.derivatives.options.{StockOption, OptionHolder, OptionWriter, Options}
@@ -38,14 +38,9 @@ object CallOptionOnGoogleStock_Test extends App {
                                 optionHolder,
                                 strikePrice = Price("1.0"),
                                 expirationTime = 1L,
-                                exerciseDate = ""
-  )
+                                exerciseDate = "")
 
-  val discountBroker = new DiscountBroker {
-
-    override def executeTrades(trades: Seq[Trade]): Unit = {}
-    override def place(order: Order): Unit = {}
-  }
+  val broker = new Broker{}
 
   //val right = discountBroker.executeTrades()
 

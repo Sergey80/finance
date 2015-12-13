@@ -18,8 +18,6 @@ import model.trading.transactions.Trade
 
 trait FullServiceBroker extends DiscountBroker {
 
-  override def executeTrades(trades:Seq[Trade])
-
   def research()
 
   def advice(): InvestmentAdvice

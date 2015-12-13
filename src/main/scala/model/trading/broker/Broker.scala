@@ -1,6 +1,7 @@
 package model.trading.broker
 
 import model.trading.orders.Order
+import model.trading.transactions.Trade
 
 /**
  * A _Stockbroker_
@@ -32,9 +33,15 @@ trait Broker {
    *
    */
 
-  def place(order : Order *) // when one/investor asks a broker to place the order for him
+  def place(order : Order): Order = new Order() // TODO: ".." .  When one/investor asks a broker to place the order for him
 
-  def execute(order : Order *)
+  def execute(order : Order) : Trade  = {
+
+    order.fill() // TODO: decide how to fll
+
+    order.execute()
+
+  }
 }
 
 

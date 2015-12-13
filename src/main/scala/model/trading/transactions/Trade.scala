@@ -1,5 +1,7 @@
 package model.trading.transactions
 
+import model.trading.orders.{FilledOrderState, Order}
+
 /**
 
  * A basic economic concept that involves multiple _Parties_ participating in the voluntary
@@ -17,16 +19,50 @@ package model.trading.transactions
  * http://www.investopedia.com/university/intro-to-order-types/long-and-short-trades.asp
  */
 
-trait Trade {
+/* Order vs Trade:
 
+ * An _Order_ is the instruction to buy or sell a _currency_ at a specified rate.
+ *
+ * The _Order_ remains valid until executed or cancelled.
+ *
+ * // --
+ *
+ * What is the difference between a Trade and an Order?
+ * =====
+ * A Trade is an instruction to _open_ or _close_ a _position_ immediately,
+ * An Order is an instruction to do so at some point in the future if Our Price
+ * reaches a pre-specified level. There are two types of Orders available with us,
+ * Stop and Limit orders.
+ *
+ * 'Open Position'
+ * Any trade that has been established, or entered,
+ * that has yet to be closed with an opposing trade.
+ * An open position can exist following a buy (long) position,
+ * or a sell (short) position. In either case, the position
+  * will remain open until an opposing trade has taken place.
+*/
+
+
+// "Enter the market" =
+// 1. place and Order,
+// 2. Execute the Trade (and filling it)
+
+case class Trade(order : Order, filledOrderState: FilledOrderState) {
+  //
   // var security:Security
-
   // val direction: Long | Short
+}
 
+object Trade {
+
+  def apply(order : Order): Trade = {
+    val filledOrderState = order.fill()
+    Trade(order, filledOrderState)
+  }
 }
 
 /**
- * The classic method of buying with the intention of profiting from a rising _market_
+ * The classic method of _buying_ with the intention of profiting from a rising _market_
  *
  * _Long trades_ can be conducted through all _brokers_ and do not necessarily require the trader
  * to have a _margin account_.
@@ -34,7 +70,7 @@ trait Trade {
  * The _losses_ from a _long trade_ are considered limited.
  * This is because if a long trade is entered at any level, price can only go as low as $0 if the trade moves in the wrong direction.
  */
-trait LongTrade extends Trade //
+trait LongTrade extends Trade  // BuyTrade
 
 
 /**
@@ -48,7 +84,7 @@ trait LongTrade extends Trade //
  * and not all brokers offer the same instruments for short sale.
 
  */
-trait ShortTrade extends Trade
+trait ShortTrade extends Trade  //
 
 trait TradingInstrument
 
