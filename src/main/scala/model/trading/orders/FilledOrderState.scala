@@ -1,7 +1,10 @@
 package model.trading.orders
 
-trait FilledOrderState // syn: executedOrderState
+object FilledOrderState extends Enumeration {
 
-case object Filled extends FilledOrderState
-case object FilledWithMinSlippage extends FilledOrderState
-case object FilledWithoutSubstantiallyAffectingPrice extends FilledOrderState
+  type FilledOrderState = Value
+
+  val Filled = Value
+  val FilledWithMinSlippage = Value
+  val FilledWithoutSubstantiallyAffectingPrice = Value
+}

@@ -1,5 +1,8 @@
 package model.trading.orders
 
+import model.trading.marketplace.StockExchange
+import model.trading.orders.FilledOrderState.FilledOrderState
+import model.trading.{Time, Price}
 import model.trading.securities.Security
 import model.trading.transactions.Trade
 
@@ -17,56 +20,90 @@ import model.trading.transactions.Trade
  * An _Order_ is the instruction to buy or sell a _currency_ at a specified rate.
  * The _Order_ remains valid until executed or cancelled.
  */
-class Order {  // syn to "Trade" ?
 
-  // var state = Valid | NotValid
+trait Order {
 
-  var security : Security = _
-
-  var aState: FilledOrderState = _
+  def side        : OrderSide.Value
+  def symbol      : String
+  def quantity    : Int
+  def price       : Price
+  def timeInForce : TimeInForce.Value
 
   /**
    * To conduct a _trade_ such that it satisfies a client's _order_.
    * A broker _fills_ an _order_ when he/she makes/produce the requested trade.
    * The price at which an order is filled is called a _fill price_.
+   *
+   *  Fill - The _action_ of completing or satisfying an _order_ for a _security_ or _commodity_.
+   *  It is the basic act in _transacting_ stocks, _bonds_ or any other type of _security_.
+   *
+   *  For example, if a _trader_ places a _buy order_ for a stock at $50 and a seller agrees to the price,
+   *  the sale has been made and the order has been filled.
+   *
+   *  Order filled when (when seller agreed on that price) and whe the sale has been made.
+   *
+   *  The $50 price is the _execution price_, which also makes it the _fill price_ -
+   *  it is the price that allows the transaction to be completed.
    */
-  def fill() : FilledOrderState = { // An executed order. Also, the price at which an order is executed.
-    // TODO:
-    aState
-  }
+
+  def fill(price: Price): Order
 
   /**
    * The execution of an order happens when it is completely filled,
    * not when it is placed by the investor.
-   */
-  def execute() : Trade = {     // A _Trade_ is the execution of the order (a transaction).
+  */
+  def execute(market:StockExchange)   : Trade = {
 
-    val trade = Trade(order = this) // executing immediately
+    //this.isFilled
 
-    trade
+    val aTrade = Trade(this)
+
+    market.trade( aTrade )
   }
-
-  // execute order = fill order. when order is executed it changes its state to be filled
-  // ( to have with some executed price).
-
 }
 
-/**
- *  Fill - The _action_ of completing or satisfying an _order_ for a _security_ or _commodity_.
- *  It is the basic act in _transacting_ stocks, _bonds_ or any other type of _security_.
- *
- *  For example, if a _trader_ places a _buy order_ for a stock at $50 and a seller agrees to the price,
- *  the sale has been made and the order has been filled.
- *
- *  Order filled when (when seller agreed on that price) and whe the sale has been made.
- *
- *  The $50 price is the _execution price_, which also makes it the _fill price_ -
- *  it is the price that allows the transaction to be completed.
- */
+// var aState: FilledOrderState = _
+// var state = Valid | NotValid
+
+// --
+
+object OrderSide extends Enumeration {
+  type OrderSide = Value
+  val Buy, Sell = Value
+}
+trait OrderSide
+trait BuyOrderSide extends OrderSide
+trait SellOrderSide extends OrderSide
+
+// --
+object TimeInForce extends Enumeration { // syn: OrderRule
+
+  type TimeInForce      = Value
+
+  val Day               = Value   // Day - remains open until the end of the trading day. Day Entry Orders cancel automatically at 5 pm ET (New York).
+
+  val GoodTillCancel    = Value   // GTC - order remains open until it is filled or until you cancel it
+
+  val ImmediateOrCancel = Value   // IOC - fills as much of your order as possible at the best available price
+
+  val FillOrKill        = Value   // FOK -  when you want your entire order filled at the best available price
+                                  // If the entire order cannot be filled at the best available price, the entire order cancels (no partial orders).
+
+  // Market order has to go wit DayOrder
+}
+
 
 object Orders {
 
-  def marketOrder(): MarketOrder = new MarketOrder() {}
+  def marketOrder(side:OrderSide.Value, symbol: String, quantity:Int): MarketOrder = {
+
+    MarketOrder(
+      side       =   side,
+      symbol       = symbol,
+      quantity     = quantity
+    )
+
+  }
 
 }
 
@@ -82,7 +119,16 @@ With the growing importance of digital technology and the internet,
   large commissions for research and advice.
   */
 
-
+/*
+The order statuses:
+  Started — order checked and accepted by Broker
+  Placed — Broker took an the order
+  Partially filled
+  Filled
+  Cancelled
+  Rejected
+  Expired
+*/
 
 
 

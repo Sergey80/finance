@@ -1,6 +1,6 @@
 package model.trading
 
-import model.trading.orders.{MarketOrder, Orders, Order}
+import model.trading.orders.{OrderSide, MarketOrder, Orders, Order}
 import model.trading.transactions.Trade
 import org.scalatest.{FeatureSpec, ShouldMatchers, GivenWhenThen}
 
@@ -11,16 +11,20 @@ class Place_Fill_Execute_Order_Test extends FeatureSpec with GivenWhenThen with 
   Given("Market Order")
 
     import model.trading.broker._
+    import OrderSide._
 
     val broker = new Broker(){}
 
-    val marketOrder: MarketOrder = Orders.marketOrder()  // simplest order that is executed immediately
+    // simplest order that is executed immediately
+    // the price is not provided, so the order is filled (immediately by the market price)
+    // and ready to go to be executed
+    val marketOrder = Orders.marketOrder(side = Buy, symbol = "IBM", quantity = 100)
 
   When("placing market order")
 
    val placedOrder = broker.place(marketOrder)
 
-   val trade = placedOrder.execute()  // should it be executed inside the "place()" since it is marketOrder
+   val trade = broker.execute(placedOrder) // TODO: it is up to broker to decide when to execute the order
 
   Then("check that...")
 

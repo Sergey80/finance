@@ -1,6 +1,7 @@
 package model.trading.broker
 
-import model.trading.orders.Order
+import model.trading.marketplace.{NewYorkStockExchange, StockExchange}
+import model.trading.orders.{MarketOrder, Orders, Order}
 import model.trading.transactions.Trade
 
 /**
@@ -33,14 +34,42 @@ trait Broker {
    *
    */
 
-  def place(order : Order): Order = new Order() // TODO: ".." .  When one/investor asks a broker to place the order for him
+  def place(order : Order): Order = {
 
-  def execute(order : Order) : Trade  = {
+    // check the order
 
-    order.fill() // TODO: decide how to fll
+    order // TODO: ".." .  When one/investor asks a broker to place the order for him
+  }
 
-    order.execute()
+  def execute(order : Order) : Trade  = { // "filling the order" = "trade execution."
 
+    // broker decides which market to send it to for execution.
+
+    val (filledOrder, market) = fill(order)   // decides about the price. fill the price.
+
+    val aTrade = Trade(filledOrder)
+
+    // position?
+    val executedTrade = market.trade(aTrade) // when got a trade order is filled (with a price)
+
+    executedTrade
+
+  }
+
+  def fill(order:Order) : (Order, StockExchange) = {            // decision about the price and the place (market) where the order will be executed
+
+    // broker decides which market to send it to for execution.
+    val market = findMarket(order)
+
+    // TODO:
+    val filledOrder = order // TODO: fill a price
+
+    (filledOrder, market)
+
+  }
+
+  def findMarket(order:Order) : StockExchange = {
+    NewYorkStockExchange // TODO: hardcoded
   }
 }
 

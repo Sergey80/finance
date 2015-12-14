@@ -1,5 +1,6 @@
 package model.trading.transactions
 
+import model.trading.orders.FilledOrderState.FilledOrderState
 import model.trading.orders.{FilledOrderState, Order}
 
 /**
@@ -47,19 +48,8 @@ import model.trading.orders.{FilledOrderState, Order}
 // 1. place and Order,
 // 2. Execute the Trade (and filling it)
 
-case class Trade(order : Order, filledOrderState: FilledOrderState) {
-  //
-  // var security:Security
-  // val direction: Long | Short
-}
+case class Trade (order:Order)
 
-object Trade {
-
-  def apply(order : Order): Trade = {
-    val filledOrderState = order.fill()
-    Trade(order, filledOrderState)
-  }
-}
 
 /**
  * The classic method of _buying_ with the intention of profiting from a rising _market_
