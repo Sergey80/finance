@@ -28,7 +28,7 @@ import model.trading.securities.{Security}
  *
  * An _instrument_ that signifies an _Ownership_Position_
  */
-trait Stock extends Security {            // syn: Share" or "Equity.", Equity Security
+class Stock(name:String) extends Security {            // syn: Share" or "Equity.", Equity Security
 
   override def partyA: Party = ???
 

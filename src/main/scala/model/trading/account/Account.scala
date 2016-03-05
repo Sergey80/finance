@@ -1,9 +1,8 @@
 package model.trading.account
 
-import model.trading.client.Investor
+case class Account(name: String, number:String)
 
-trait Account {
-
-  def investors(): Seq[Investor] // account connects the investor
-
+object AccountType extends Enumeration {
+  type AccountType = Value
+  val Cash, Margin = Value
 }

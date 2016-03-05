@@ -71,7 +71,7 @@ object OrderSide extends Enumeration {
   type OrderSide = Value
   val Buy, Sell = Value
 }
-trait OrderSide
+sealed trait OrderSide
 trait BuyOrderSide extends OrderSide
 trait SellOrderSide extends OrderSide
 

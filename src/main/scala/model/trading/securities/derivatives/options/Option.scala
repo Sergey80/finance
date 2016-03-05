@@ -2,6 +2,7 @@ package model.trading.securities.derivatives.options
 
 import model.trading._
 import model.trading.client.Party
+import model.trading.securities.equitysecurties.Stock
 import model.trading.securities.{Security, Equity}
 import model.trading.securities.derivatives.Derivative
 import model.trading.securities.derivatives.options.OptionType.OptionType
@@ -41,6 +42,8 @@ object OptionType extends Enumeration {
 
 case class Option(
 
+  underlying : Security,
+
   writer: OptionWriter,       //
   holder: OptionHolder,       // Buyer
 
@@ -55,10 +58,7 @@ case class Option(
   //val volatility: Double    =_
   //val riskFreeRate: Double  = _
 
-) extends Equity with Derivative with model.trading.securities.rights.Right {
-
-  override def underlying(): Security = {}
-}
+) extends Derivative with model.trading.securities.rights.Right
 
 
 object Options {
