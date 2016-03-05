@@ -3,7 +3,7 @@ package model.trading
 import model.trading.broker.{Broker, DiscountBroker}
 import model.trading.client.Investor
 import model.trading.orders.Order
-import model.trading.securities.derivatives.options.{StockOption, OptionHolder, OptionWriter, Options}
+import model.trading.securities.derivatives.options.{Option, OptionHolder, OptionWriter, Options}
 import model.trading.securities.equitysecurties._
 import model.trading.transactions.Trade
 
@@ -33,7 +33,7 @@ object CallOptionOnGoogleStock_Test extends App {
     }
   }
 
-  val callOption: StockOption = Options.CALL(
+  val callOption: Option = Options.CALL(
                                 optionWriter,
                                 optionHolder,
                                 strikePrice = Price("1.0"),

@@ -45,12 +45,13 @@ trait Broker {
 
     // broker decides which market to send it to for execution.
 
+    // TODO: ...
     val (filledOrder, market) = fill(order)   // decides about the price. fill the price.
 
-    val aTrade = Trade(filledOrder)
+    val trade = Trade(filledOrder)           // filled order becomes/turns into a Trade that has to be executed immediately
 
     // position?
-    val executedTrade = market.trade(aTrade) // when got a trade order is filled (with a price)
+    val executedTrade = market.trade(trade) // when got a trade order is filled (with a price)
 
     executedTrade
 

@@ -1,8 +1,7 @@
 package model.trading.securities.derivatives.swaps
 
-/**
- * Created by serge on 15/11/15.
- */
-trait CurrencySwap {
+import model.trading.securities.derivatives.Derivative
+
+trait CurrencySwap extends Derivative {
 
 }

@@ -2,7 +2,8 @@ package model.trading.securities.derivatives.options
 
 import model.trading._
 import model.trading.client.Party
-import model.trading.securities.Equity
+import model.trading.securities.{Security, Equity}
+import model.trading.securities.derivatives.Derivative
 import model.trading.securities.derivatives.options.OptionType.OptionType
 
 //  publicly-traded corporation, represents some type of financial value
@@ -38,7 +39,7 @@ object OptionType extends Enumeration {
   val PUT = Value   // the buyer would want the _stock_ to go down
 }
 
-case class StockOption (
+case class Option(
 
   writer: OptionWriter,       //
   holder: OptionHolder,       // Buyer
@@ -49,12 +50,15 @@ case class StockOption (
   expirationTime: Time,       // during a certain _period of time_
   exerciseDate: Date,          // or on a specific date (_exercise date_).
 
-  optionType: OptionType
+  optionType: OptionType      // PUT / CALL
 
   //val volatility: Double    =_
   //val riskFreeRate: Double  = _
 
-) extends Equity with model.trading.securities.rights.Right
+) extends Equity with Derivative with model.trading.securities.rights.Right {
+
+  override def underlying(): Security = {}
+}
 
 
 object Options {
@@ -63,9 +67,9 @@ object Options {
            holder: OptionHolder,
            strikePrice: Price,
            expirationTime: Time,
-           exerciseDate: Date) : StockOption = {
+           exerciseDate: Date) : Option = {
 
-    StockOption(writer, holder, strikePrice, expirationTime, exerciseDate,OptionType.CALL)
+    Option(writer, holder, strikePrice, expirationTime, exerciseDate,OptionType.CALL)
 
   }
 
@@ -73,9 +77,9 @@ object Options {
            holder: OptionHolder,
            strikePrice: Price,
            expirationTime: Time,
-           exerciseDate: Date) : StockOption = {
+           exerciseDate: Date) : Option = {
 
-    StockOption(writer, holder, strikePrice, expirationTime, exerciseDate,OptionType.PUT)
+    Option(writer, holder, strikePrice, expirationTime, exerciseDate,OptionType.PUT)
 
   }
 

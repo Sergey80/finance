@@ -21,7 +21,7 @@ import model.trading.transactions.Trade
  * The _Order_ remains valid until executed or cancelled.
  */
 
-trait Order {
+trait Order[T] {
 
   def side        : OrderSide.Value
   def symbol      : String
