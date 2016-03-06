@@ -68,13 +68,19 @@ trait Order {
 
 // --
 
+object OrderType extends Enumeration {
+  type OrderType = Value
+  val Limit = Value
+  val Market = Value
+  val Stop = Value
+  val Standard = Value
+  val FillOrKill = Value
+}
+
 object OrderSide extends Enumeration {
   type OrderSide = Value
   val Buy, Sell = Value
 }
-sealed trait OrderSide
-trait BuyOrderSide extends OrderSide
-trait SellOrderSide extends OrderSide
 
 // --
 object TimeInForce extends Enumeration { // syn: OrderRule
