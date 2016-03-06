@@ -1,9 +1,10 @@
 package model.trading.securities.derivatives.options.ticket
 
 import model.trading.account.{AccountType, Account}
+import model.trading.orders.option.OptionOrder
 import model.trading.securities.derivatives.options.OptionType
 import model.trading.{Price, Date}
-import model.trading.orders.OrderSide
+import model.trading.orders.{TimeInForce, Order, OrderSide}
 import model.trading.securities.Security
 import model.trading.securities.equitysecurties.Stock
 
@@ -41,7 +42,7 @@ case class OptionOrderTicket(
   accountType    : AccountType.Value = AccountType.Cash,
 
   // TODO:
-  price          : String            = "Price and time limits if any",
+  price          : Price            = "Price and time limits if any",
 
   transactionType: TransactionType.Value  = TransactionType.Solicited,
 
@@ -58,5 +59,20 @@ case class OptionOrderTicket(
 
 
 object OptionOrderTicket {
+
+    def submit(ticket: OptionOrderTicket): Order = {
+
+      // convert ticket to order
+
+      val order = OptionOrder(
+        side = ticket.side,
+        price = ticket.price,
+        timeInForce = TimeInForce.Day,
+        symbol = ticket.underlyingName,
+        quantity = ticket.quantity
+      )
+
+      order
+    }
 
 }

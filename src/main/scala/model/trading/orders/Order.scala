@@ -21,11 +21,14 @@ import model.trading.transactions.Trade
  * The _Order_ remains valid until executed or cancelled.
  */
 
-trait Order[T] {
+
+
+
+trait Order {
 
   def side        : OrderSide.Value
   def symbol      : String
-  def quantity    : Int
+  def quantity    : Long
   def price       : Price
   def timeInForce : TimeInForce.Value
 
@@ -46,20 +49,20 @@ trait Order[T] {
    *  it is the price that allows the transaction to be completed.
    */
 
-  def fill(price: Price): Order
+//  def fill(price: Price): Order
 
   /**
    * The execution of an order happens when it is completely filled,
    * not when it is placed by the investor.
   */
-  def execute(market:StockExchange)   : Trade = {
-
-    //this.isFilled
-
-    val aTrade = Trade(this)
-
-    market.trade( aTrade )
-  }
+//  def execute(market:StockExchange)   : Trade = {
+//
+//    //this.isFilled
+//
+//    val aTrade = Trade(this)
+//
+//    market.trade( aTrade )
+//  }
 }
 
 // var aState: FilledOrderState = _
