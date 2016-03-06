@@ -1,4 +1,4 @@
-package model.trading.orders
+package model.trading.orderticket.orders
 
 /**
  *

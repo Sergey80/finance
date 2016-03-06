@@ -1,7 +1,7 @@
-package model.trading.orders
+package model.trading.orderticket.orders
 
 import model.trading.marketplace.StockExchange
-import model.trading.orders.FilledOrderState.FilledOrderState
+import model.trading.orderticket.orders.FilledOrderState.FilledOrderState
 import model.trading.{Time, Price}
 import model.trading.securities.Security
 import model.trading.transactions.Trade
@@ -20,8 +20,6 @@ import model.trading.transactions.Trade
  * An _Order_ is the instruction to buy or sell a _currency_ at a specified rate.
  * The _Order_ remains valid until executed or cancelled.
  */
-
-
 
 
 trait Order {

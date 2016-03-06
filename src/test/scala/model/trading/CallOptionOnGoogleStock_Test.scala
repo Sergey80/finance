@@ -2,7 +2,7 @@ package model.trading
 
 import model.trading.broker.{Broker, DiscountBroker}
 import model.trading.client.Investor
-import model.trading.orders.Order
+import model.trading.orderticket.orders.Order
 import model.trading.securities.derivatives.options.{Option, OptionHolder, OptionWriter, Options}
 import model.trading.securities.equitysecurties._
 import model.trading.transactions.Trade

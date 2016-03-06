@@ -1,7 +1,7 @@
 package model.trading.broker
 
 import model.trading.marketplace.{NewYorkStockExchange, StockExchange}
-import model.trading.orders.{MarketOrder, Orders, Order}
+import model.trading.orderticket.orders.{MarketOrder, Orders, Order}
 import model.trading.transactions.Trade
 
 /**

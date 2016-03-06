@@ -1,8 +1,8 @@
-package model.trading.orders
+package model.trading.orderticket.orders
 
 import model.trading._
 import model.trading.marketplace.StockExchange
-import model.trading.orders.FilledOrderState
+import model.trading.orderticket.orders.FilledOrderState
 import model.trading.transactions.Trade
 
 /**

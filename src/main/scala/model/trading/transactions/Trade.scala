@@ -1,7 +1,7 @@
 package model.trading.transactions
 
-import model.trading.orders.FilledOrderState.FilledOrderState
-import model.trading.orders.{FilledOrderState, Order}
+import model.trading.orderticket.orders.FilledOrderState.FilledOrderState
+import model.trading.orderticket.orders.{FilledOrderState, Order}
 
 /**
 

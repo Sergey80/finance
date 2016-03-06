@@ -1,7 +1,7 @@
-package model.trading.orders.option
+package model.trading.orderticket.orders.options
 
 import model.trading._
-import model.trading.orders.{Order, TimeInForce, OrderSide}
+import model.trading.orderticket.orders.{Order, TimeInForce, OrderSide}
 
 // TODO: show the difference between StockOrder and OptionOrder.
 case class OptionOrder(

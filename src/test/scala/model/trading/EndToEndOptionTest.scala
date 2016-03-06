@@ -1,6 +1,6 @@
 package model.trading
 
-import model.trading.securities.derivatives.options.ticket.OptionOrderTicket
+import model.trading.orderticket.tickets.options.OptionOrderTicket
 
 object EndToEndOptionTest extends App {
 

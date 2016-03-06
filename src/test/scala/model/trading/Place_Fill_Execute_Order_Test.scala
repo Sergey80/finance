@@ -1,6 +1,6 @@
 package model.trading
 
-import model.trading.orders.{OrderSide, MarketOrder, Orders, Order}
+import model.trading.orderticket.orders.{OrderSide, MarketOrder, Orders, Order}
 import model.trading.transactions.Trade
 import org.scalatest.{FeatureSpec, ShouldMatchers, GivenWhenThen}
 

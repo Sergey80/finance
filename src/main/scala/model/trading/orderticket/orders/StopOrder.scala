@@ -1,4 +1,4 @@
-package model.trading.orders
+package model.trading.orderticket.orders
 
 /**
  * When you place a stop or limit order, you are telling your broker that

@@ -1,6 +1,6 @@
 package model.trading.broker
 
-import model.trading.orders.Order
+import model.trading.orderticket.orders.Order
 import model.trading.transactions.Trade
 
 
