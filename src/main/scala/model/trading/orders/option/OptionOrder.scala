@@ -10,4 +10,5 @@ case class OptionOrder(
                         timeInForce : TimeInForce.Value,
                         symbol      : String,
                         quantity    : Long
+                        // TODO: add all opt fields
                         ) extends Order
