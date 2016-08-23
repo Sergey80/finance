@@ -18,3 +18,10 @@ A principal trade occurs when a brokerage house buys securities on the secondary
 
 * Street Trade
  the trade that is made to deal with with 3rd party (the street) .. TODO
+
+--
+
+Variance in Investing
+Variance is one of the key parameters in asset allocation. Along with correlation, variance of asset returns helps investors to develop optimal portfolios by optimizing the return-volatility trade-off in investment portfolios. Risk or volatility is often expressed as a standard deviation rather than variance because the former is more easily interpreted.
+
+http://www.investopedia.com/terms/v/variance.asp
